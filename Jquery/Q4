@@ -1,0 +1,55 @@
+<!-- This code for fetching jokes using ajax-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <h1>Dad Jokes</h1>
+      <button id="fetch-jokes">Fetch Jokes</button>
+      <div id="container"></div>
+    </main>
+  </body>
+  <script src="jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#fetch-jokes").click(function () {
+        $.ajax({
+          url: "https://icanhazdadjoke.com/search", // REST API
+          method: "GET",
+          headers: { Accept: "application/json" }, // accepted data type
+          success: function (response) {
+            // Clear previous jokes
+            $("#container").empty();
+
+            // Looping through the jokes and displaying dynamically
+            response.results.forEach(function (joke) {
+              // appending the div html for each joke
+              $("#container").append(`
+                                  <div class="item">
+                                      ${joke.joke}
+                                  </div>
+                              `);
+            });
+            //   if there is no response
+            if (response.results.length === 0) {
+              $("#container").append(`
+                                  <div class="item">
+                                      No dad jokes found. Sad dad moment!
+                                  </div>
+                              `);
+            }
+          },
+          error: function (error) {
+            alert("Error" + error?.message);
+            console.error(error);
+          },
+        });
+      });
+    });
+
+  </script>
+</html>
