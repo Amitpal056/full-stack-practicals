@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="draggable" style="width:100px;height:100px;background:rgb(0, 5, 8);" draggable="true">Drag Me</div>
+    <div id="draggable" style="width:100px;height:100px;background:rgb(117, 202, 255);" draggable="true">Drag Me</div>
     <div id="dropzone" style="width:200px;height:200px;border:2px dashed #ff9696;">Drop Here</div>
     
 </body>
